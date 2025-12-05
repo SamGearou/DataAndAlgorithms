@@ -1,7 +1,8 @@
 package matrices;
 
 /**
- * Paper: http://www.cse.yorku.ca/~andy/pubs/X+Y.pdf
+ * Paper: http://www.cse.yorku.ca/~andy/pubs/X+Y.pdf.
+ * Requrirement: The matrix A's rows must be nonincreasing, and the matrix A's columns must be nondecreasing for these two methods to work as expected.
  */
 public class MatrixRank {
 
