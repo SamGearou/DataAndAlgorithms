@@ -1,5 +1,7 @@
 package medianofmedians;
 
+import java.util.Arrays;
+
 /**
  * Select algorithm using Median of Medians for guaranteed O(n) worst-case time complexity.
  * Finds the kth smallest element in an unsorted array.
@@ -94,7 +96,7 @@ public class Select {
     }
 
     /**
-     * Finds the median of at most 5 elements using insertion sort.
+     * Finds the median of at most 5 elements using Arrays.sort().
      * Returns the index of the median element.
      *
      * @param arr   the array
@@ -105,31 +107,27 @@ public class Select {
     private static int medianOfFive(int[] arr, int left, int right) {
         int n = right - left + 1;
         int[] temp = new int[n];
-        int[] indices = new int[n];
 
-        // Copy elements with their original indices
+        // Copy elements into temp array
         for (int i = 0; i < n; i++) {
             temp[i] = arr[left + i];
-            indices[i] = left + i;
         }
 
-        // Insertion sort
-        for (int i = 1; i < n; i++) {
-            int key = temp[i];
-            int keyIdx = indices[i];
-            int j = i - 1;
+        // Sort the temp array
+        Arrays.sort(temp);
 
-            while (j >= 0 && temp[j] > key) {
-                temp[j + 1] = temp[j];
-                indices[j + 1] = indices[j];
-                j--;
+        // Get the median value
+        int medianValue = temp[n / 2];
+
+        // Find the index of the median value in the original array segment
+        for (int i = left; i <= right; i++) {
+            if (arr[i] == medianValue) {
+                return i;
             }
-            temp[j + 1] = key;
-            indices[j + 1] = keyIdx;
         }
 
-        // Return index of median
-        return indices[n / 2];
+        // Fallback (should not happen)
+        return left;
     }
 
     /**
