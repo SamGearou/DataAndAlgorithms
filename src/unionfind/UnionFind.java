@@ -54,7 +54,7 @@ public class UnionFind {
             } else {
                 p[x] = y;
                 if (rank[x] == rank[y]) {
-                    rank[y]++; // increase rank if trees had equal height
+                    rank[y]++; // increase rank if leetcode.trees had equal height
                 }
             }
         }

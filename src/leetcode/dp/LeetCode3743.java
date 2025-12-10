@@ -1,4 +1,4 @@
-package dp;
+package leetcode.dp;
 
 /**
  * Leetcode hard: https://leetcode.com/problems/maximize-cyclic-partition-score/
@@ -6,7 +6,7 @@ package dp;
  * Divide and Conquer (another good explanation: https://jeffreyxiao.me/blog/divide-and-conquer-optimization
  * Time Complexity: O(nklogn) where n is the array length and k is the number of partitions (running time with "non-divide and conquer" DP would be: O(n^2k)
  */
-public class DivideAndConquerDP {
+public class LeetCode3743 {
     public long maximumScore(int[] nums, int k) {
         int n = nums.length;
         long[][] dp = new long[n + 1][k + 1];
@@ -93,7 +93,7 @@ public class DivideAndConquerDP {
      * The key insight is the monotonicity property: if opt(i, j) is the optimal splitting point for position j
      * in group g, then opt(i, j') <= opt(i, j) for all j' < j. This allows us to narrow the search space.
      * 
-     * @param dp The DP table where dp[mid][g] stores the maximum score for position mid with g groups
+     * @param dp The DP table where leetcode.dp[mid][g] stores the maximum score for position mid with g groups
      * @param g The current group number (1-indexed)
      * @param i The start index of the range to compute (1-indexed)
      * @param j The end index of the range to compute (1-indexed)
@@ -118,7 +118,7 @@ public class DivideAndConquerDP {
     }
 
     public static void main(String[] args) {
-        DivideAndConquerDP solution = new DivideAndConquerDP();
+        LeetCode3743 solution = new LeetCode3743();
         int[] nums = {1, 3, 4};
         int k = 2;
         
