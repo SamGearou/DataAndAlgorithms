@@ -12,7 +12,7 @@ public class ForkJoinDemo {
             nums[i] = i;
         }
 
-        System.out.println("A portionn of the original sequence:");
+        System.out.println("A portion of the original sequence:");
         for (int i = 0; i < 10; i++) {
             System.out.print(nums[i] + " ");
         }
