@@ -1,5 +1,6 @@
 package quickselect;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -42,20 +43,18 @@ public class Select {
      * @param right  Right boundary of current subarray
      */
     private void quickSelect(List<Point> points, int k, int left, int right) {
-        if (left >= right) {
-            return; // Base case: single element or invalid range
+        if (left < right) {
+            int pivot = left + random.nextInt(right - left + 1);
+
+            int pivotIndex = partition(points, pivot, left, right);
+
+            if (k < pivotIndex) {
+                quickSelect(points, k, left, pivotIndex - 1);
+            } else if (k > pivotIndex) {
+                quickSelect(points, k, pivotIndex + 1, right);
+            }
+            // If k == pivotIndex, we're done - the k-th element is in its final position
         }
-
-        int pivot = left + random.nextInt(right - left + 1);
-
-        int pivotIndex = partition(points, pivot, left, right);
-
-        if (k < pivotIndex) {
-            quickSelect(points, k, left, pivotIndex - 1);
-        } else if (k > pivotIndex) {
-            quickSelect(points, k, pivotIndex + 1, right);
-        }
-        // If k == pivotIndex, we're done - the k-th element is in its final position
     }
 
     /**

@@ -75,8 +75,8 @@ public class Select {
         int[] medianValues = new int[numGroups];
 
         for (int i = 0; i < numGroups; i++) {
-            int groupLeft = left + i * 5;
-            int groupRight = Math.min(left + i * 5 + 4, right);
+            int groupLeft = left + (i * 5);
+            int groupRight = Math.min(left + (i * 5) + 4, right);
             int medianIdx = medianOfFive(arr, groupLeft, groupRight);
             medianValues[i] = arr[medianIdx];
         }
