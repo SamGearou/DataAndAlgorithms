@@ -9,7 +9,7 @@ import java.util.Random;
  * QuickSelect is a selection algorithm that finds the k-th smallest element
  * in an unordered list. It uses partitioning similar to QuickSort but only
  * recurses on one side of the partition, making it more efficient for selection.
- *
+ * <p>
  * Time Complexity: O(n) average case, O(n²) worst case
  * Space Complexity: O(1) auxiliary space (excluding input)
  */
@@ -22,18 +22,13 @@ public class Select {
      * Uses QuickSelect to efficiently find the k smallest elements by distance.
      *
      * @param points List of points to search through
-     * @param k Number of closest points to return
+     * @param k      Number of closest points to return
      * @return List containing the k closest points to origin, unsorted by distance
      */
     public List<Point> kClosestToOrigin(List<Point> points, int k) {
         quickSelect(points, k, 0, points.size() - 1);
 
-        List<Point> result = new ArrayList<>();
-        for (int i = 0; i < k; i++) {
-            result.add(points.get(i));
-        }
-
-        return result;
+        return points.subList(0, k);
     }
 
     /**
@@ -42,11 +37,15 @@ public class Select {
      * that contains the k-th element, making it efficient for selection.
      *
      * @param points List of points being processed
-     * @param k Index (0-based) of the element to find (k-th smallest)
-     * @param left Left boundary of current subarray
-     * @param right Right boundary of current subarray
+     * @param k      Index (0-based) of the element to find (k-th smallest)
+     * @param left   Left boundary of current subarray
+     * @param right  Right boundary of current subarray
      */
     private void quickSelect(List<Point> points, int k, int left, int right) {
+        if (left >= right) {
+            return; // Base case: single element or invalid range
+        }
+
         int pivot = left + random.nextInt(right - left + 1);
 
         int pivotIndex = partition(points, pivot, left, right);
@@ -65,9 +64,9 @@ public class Select {
      * elements larger go to the right. Uses Lomuto partition scheme.
      *
      * @param points List of points to partition
-     * @param pivot Index of the pivot element
-     * @param left Left boundary of partition range
-     * @param right Right boundary of partition range
+     * @param pivot  Index of the pivot element
+     * @param left   Left boundary of partition range
+     * @param right  Right boundary of partition range
      * @return Final position of the pivot element after partitioning
      */
     private int partition(List<Point> points, int pivot, int left, int right) {
@@ -92,8 +91,8 @@ public class Select {
      * Swaps two elements in the points list.
      *
      * @param points List containing elements to swap
-     * @param i Index of first element
-     * @param j Index of second element
+     * @param i      Index of first element
+     * @param j      Index of second element
      */
     private void swap(List<Point> points, int i, int j) {
         Point temp = points.get(i);
